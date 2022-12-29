@@ -1,0 +1,29 @@
+Task 1
+Query * SELECT customer_name, l.loan_number from customer c, borrower b, loan l where c.customer_id = b.customer_id and l.loan_number = b.loan_number and l.branch_name = 'downtown';
+
+Task 2
+Query * SELECT distinct branch_name from branch b1 where exists(SELECT * FROM branch b2 where b1.branch_name != b2.branch_name and branch_city = 'horsenech' and b1.assets > b2.assets);
+
+Task 3
+Query * SELECT b.branch_name, coalesce(count(d.account_number)) FROM (depositor d inner join account a on d.account_number = a.account_number) right join branch b on a.branch_name=b.branch_name group by b.branch_name; 
+
+Task 4
+Quert * SELECT c.customer_name as customer1, cu.customer_name as customer2, c.customer_city as city from customer c inner join customer cu on c.customer_city = cu.customer_city and c.customer_name > cu.customer_name;
+
+Task 5
+Query * SELECT branch_name as branch_name, sum((balance*4)/100) as total_interst FROM account GROUP BY branch_name;
+
+Task 6
+Query * SELECT c.customer_city, d.account_number, max(a.balance) FROM customer c, depositor d, account a WHERE c.customer_id = d.customer_id and d.account number = a.account_number GROUP BY c.customer_city; 
+
+Task 7
+Query * SELECT branch_name FROM branch WHERE branch_city != 'brooklyn' and assets < all (SELECT assets FROM branch WHERE branch_city = 'brooklyn');
+
+Task 8
+Query * SELECT l.loan_number, amount, c.customer_name FROM customer c, borrower b, (SELECT * FROM loan ORDER BY amount desc limit 5) l where c.customer_id = b.customer_id and b.loan_number = l.loan_number ORDER BY amount, loan_number desc;
+
+Task 9
+Query * SELECT customer_name FROM customer c, depositor d, account a WHERE c.customer_id = d.customer_id and a.account_number = d.account_number and a.branch_name = 'perryridge' and customer_name in (SELECT customer_name FROM customer c, borrower b, loan l WHERE c.customer_id = b.customer_id and b.loan_number = l.loan_number and a.branch_name = 'perryridge');
+
+Task 10
+QUery * SELECT sum(l.amount) FROM (SELECT loan_number FROM borrower where customer_id in (SELECT customer_id FROM borrower GROUP BY customer_id having count(*) > 1)) b, loan l WHERE b.loan_number = l.loan_number;

@@ -1,0 +1,12 @@
+Assignment 1
+
+Task 1
+
+Task 2
+ALTER TABLE users RENAME COLUMN member_since TO joining_date;
+
+Task 3
+SELECT name, email, followers FROM users;
+
+Task 4
+SELECT name,(((followers*100/1000000) * (multiplier*100/20))/100) as Efficiency FROM users;

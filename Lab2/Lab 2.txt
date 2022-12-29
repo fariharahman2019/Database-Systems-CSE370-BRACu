@@ -1,0 +1,46 @@
+
+Assignment 2
+TASK 1
+SELECT DISTINCT multiplier FROM users ORDER BY multiplier DESC;
+
+TASK 2
+SELECT DISTINCT member_since FROM users ORDER BY member_since asc;
+
+TASK 3
+SELECT id, email FROM users WHERE email like '%.com';
+
+TASK 4
+SELECT name, email FROM users ORDER BY id DESC LIMIT 5;
+
+TASK 5
+SELECT COUNT(*) FROM users;
+
+TASK 6
+SELECT COUNT(multiplier) FROM users WHERE member_since > '2020-04-30';
+
+TASK 7
+SELECT AVG(LENGTH(name)) FROM users;
+
+TASK 8 
+SELECT substr(email,INSTR(email,".")+1),count(substr(email,INSTR(email,"."))) from users group by substr(email,INSTR(email,"."));
+
+TASK 9
+SELECT * FROM users ORDER BY member_since ASC;
+
+TASK 10
+SELECT name, MAX(influence_countf) FROM users WHERE member_since  >'2020-04-30' ;
+
+TASK 11
+SELECT name, MAX(multiplier) FROM users WHERE influence_count <700000;
+
+TASK 12
+SELECT DISTINCT(multiplier) FROM users WHERE influence_count<900000;
+
+TASK 13
+SELECT AVG(influence_count) FROM users WHERE member_since<'2020-06-11';
+
+TASK 14
+SELECT id, name, email, multiplier FROM users WHERE member_since >'2020-05-18' AND influence_count BETWEEN 700000 AND 990000;
+
+TASK 15
+SELECT id, name, email, influence_count FROM users WHERE name LIKE '%u%' AND name LIKE '%o%' AND name LIKE '%v%' AND name LIKE '%n%' AND name LIKE '%s%' AND name LIKE '%m%' ;

@@ -1,0 +1,45 @@
+Assignment 3
+Task 1
+SELECT first_name, last_name, email, phone_number, hire_date and department_id FROM employees WHERE (hire_date, department_id) IN (SELECT department_id, max(hire_date) FROM employees GROUP BY department_id);
+
+Task 2
+SELECT first_name, last_name, email, phone_number, hire_date and department_id FROM employees WHERE (hire_date, department_id) IN (SELECT department_id, min(hire_date) FROM employees GROUP BY department_id);
+
+Task 3
+SELECT first_name, last_name, employee_id, phone_number, salary, department_id FROM employees WHERE(salary, department_id) IN (SELECT min(salary),department_id FROM employees GROUP BY department_id);
+
+Task 4
+SELECT first_name, last_name, employee_id, commission_pct FROM employees WHERE department_id=7 AND commission_pct < ALL(SELECT commission_pct FROM employees WHERE department_id=5);
+
+Task 5
+SELECT COUNT(*) FROM employees GROUP BY department_id;
+
+Task 6
+SELECT first_name, last_name, employee_id, email, salary, department_id FROM employees WHERE hire_date < '2020-01-01';
+
+Task 7
+SELECT first_name, last_name, employee_id, email, max(salary) FROM employees WHERE manager_id = 'abcd998773';
+
+Task 8
+SELECT DISTINCT department_id FROM employees A1 WHERE NOT EXISTS (SELECT * FROM employees B1 WHERE cse.department_id = B1.department_id AND B1.salary > 30000 );
+
+Task 9 
+SELECT departmenrt_id, job_id, commission_pct FROM employees WHERE commission_pct < ANY (SELECT job_id);
+
+Task 10
+SELECT first_name, last_name, employee_id, email, salary, department_id, commission_pct FROM employees WHERE commission_pct IN (SELECT min(commission_pct) FROM employees GROUP BY manager_id);
+
+Task 11
+SELECT COUNT (*) FROM employees WHERE employee_id = manager_id;
+
+Task 12
+SELECT department_id, job_id, salart FROM employees WHERE salary < ANY (SELECT job_id FROM employees GROUP BY department_id);
+
+Task 13
+SELECT DISTINCT manager_id FROM employees WHERE salary>1500;
+
+Task 14
+SELECT manager_id FROM employees WHERE commission_pct = ANY (SELECT commission_pct WHERE commission_pct < 15.25) GROUP BY manager_id;
+
+Task 15
+SELECT DISTINCT manager_id FROM employees A1 WHERE NOT EXISTS (SELECT * FROM employees B1 WHERE cse.manager_id = B1.manager_id AND B1.salary<3500);
